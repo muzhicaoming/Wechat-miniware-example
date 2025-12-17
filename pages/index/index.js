@@ -7,8 +7,8 @@ Page({
     functions: [
       {
         id: 1,
-        name: '用户登录',
-        icon: '👤',
+        name: '微信登录',
+        icon: '💬',
         path: '/pages/login/login',
         color: '#4A90E2'
       },
