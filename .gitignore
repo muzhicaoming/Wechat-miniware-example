@@ -1,0 +1,28 @@
+# 微信小程序
+project.private.config.json
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 测试覆盖率
+coverage/
+.nyc_output/
+
+# 日志
+logs/
+*.log
+
+# 临时文件
+*.tmp
+*.temp

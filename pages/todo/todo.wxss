@@ -1,0 +1,100 @@
+/* pages/todo/todo.wxss */
+.input-group {
+  display: flex;
+  gap: 20rpx;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+}
+
+.btn-add {
+  padding: 20rpx 40rpx;
+  background-color: #4A90E2;
+  color: #fff;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  border: none;
+}
+
+.todo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.todo-count {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.btn-clear {
+  font-size: 24rpx;
+  color: #FF6B6B;
+  padding: 10rpx 20rpx;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  background-color: #F9F9F9;
+  border-radius: 8rpx;
+  border-left: 4rpx solid #4A90E2;
+}
+
+.todo-item.completed {
+  opacity: 0.6;
+  border-left-color: #95A5A6;
+}
+
+.todo-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 20rpx;
+}
+
+.todo-checkbox {
+  font-size: 32rpx;
+  color: #4A90E2;
+  width: 40rpx;
+  text-align: center;
+}
+
+.todo-item.completed .todo-checkbox {
+  color: #95A5A6;
+}
+
+.todo-text {
+  font-size: 28rpx;
+  color: #333;
+  flex: 1;
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.todo-delete {
+  font-size: 24rpx;
+  color: #FF6B6B;
+  padding: 10rpx 20rpx;
+}
+
+.empty-tip {
+  text-align: center;
+  padding: 60rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}

@@ -1,0 +1,132 @@
+/* pages/memo/memo.wxss */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-add {
+  padding: 16rpx 32rpx;
+  background-color: #4A90E2;
+  color: #fff;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  border: none;
+}
+
+.editor-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.editor-modal.show {
+  display: flex;
+}
+
+.editor-content {
+  width: 90%;
+  max-width: 600rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 40rpx;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.editor-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.editor-close {
+  font-size: 48rpx;
+  color: #999;
+  line-height: 1;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 200rpx;
+  padding: 20rpx;
+  border: 2rpx solid #E0E0E0;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  margin: 20rpx 0;
+}
+
+.memo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.memo-item {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.memo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.memo-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+}
+
+.memo-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.memo-action {
+  font-size: 24rpx;
+  color: #4A90E2;
+  padding: 8rpx 16rpx;
+}
+
+.memo-action.delete {
+  color: #FF6B6B;
+}
+
+.memo-content {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+  display: block;
+  margin-bottom: 15rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.memo-time {
+  font-size: 22rpx;
+  color: #999;
+}

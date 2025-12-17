@@ -1,0 +1,23 @@
+<!--pages/help/help.wxml-->
+<view class="container">
+  <view class="card">
+    <view class="title">帮助中心</view>
+    <text class="subtitle">常见问题和使用指南</text>
+  </view>
+
+  <view class="help-list">
+    <view class="help-item" wx:for="{{helpSections}}" wx:key="title">
+      <view class="help-header">
+        <text class="help-title">{{item.title}}</text>
+      </view>
+      <text class="help-content">{{item.content}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="contact-info">
+      <text class="contact-title">需要更多帮助？</text>
+      <text class="contact-text">如有其他问题，请查看应用设置或关于页面获取更多信息。</text>
+    </view>
+  </view>
+</view>

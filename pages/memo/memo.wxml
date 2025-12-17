@@ -1,0 +1,60 @@
+<!--pages/memo/memo.wxml-->
+<view class="container">
+  <view class="card">
+    <view class="header-row">
+      <view class="title">备忘录</view>
+      <button class="btn-add" bindtap="showEditor">+ 新建</button>
+    </view>
+  </view>
+
+  <!-- 编辑器 -->
+  <view class="editor-modal {{showEditor ? 'show' : ''}}" wx:if="{{showEditor}}">
+    <view class="editor-content">
+      <view class="editor-header">
+        <text class="editor-title">{{editingMemo ? '编辑备忘录' : '新建备忘录'}}</text>
+        <text class="editor-close" bindtap="hideEditor">×</text>
+      </view>
+      
+      <input 
+        class="input" 
+        placeholder="请输入标题" 
+        value="{{inputTitle}}"
+        bindinput="onTitleInput"
+      />
+      
+      <textarea 
+        class="textarea" 
+        placeholder="请输入内容" 
+        value="{{inputContent}}"
+        bindinput="onContentInput"
+        maxlength="500"
+      />
+      
+      <button class="btn" bindtap="saveMemo">保存</button>
+      <button class="btn btn-secondary" bindtap="hideEditor">取消</button>
+    </view>
+  </view>
+
+  <!-- 备忘录列表 -->
+  <view class="memo-list">
+    <view 
+      class="memo-item" 
+      wx:for="{{memoList}}" 
+      wx:key="id"
+    >
+      <view class="memo-header">
+        <text class="memo-title" data-id="{{item.id}}" bindtap="viewDetail">{{item.title}}</text>
+        <view class="memo-actions">
+          <text class="memo-action" data-id="{{item.id}}" bindtap="editMemo">编辑</text>
+          <text class="memo-action delete" data-id="{{item.id}}" bindtap="deleteMemo">删除</text>
+        </view>
+      </view>
+      <text class="memo-content">{{item.content}}</text>
+      <text class="memo-time">{{item.createTimeStr}}</text>
+    </view>
+    
+    <view class="empty-tip" wx:if="{{memoList.length === 0}}">
+      <text>暂无备忘录，点击"新建"创建第一条</text>
+    </view>
+  </view>
+</view>

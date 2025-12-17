@@ -1,0 +1,6 @@
+/* pages/login/login.wxss */
+.desc {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1.6;
+}

@@ -1,0 +1,27 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">功能中心</text>
+    <text class="subtitle">选择您需要的功能</text>
+  </view>
+
+  <!-- 九宫格布局 -->
+  <view class="grid-container">
+    <view 
+      class="grid-item" 
+      wx:for="{{functions}}" 
+      wx:key="id"
+      data-path="{{item.path}}"
+      bindtap="onFunctionTap"
+      style="background-color: {{item.color}}20; border-left: 4rpx solid {{item.color}}"
+    >
+      <text class="grid-icon">{{item.icon}}</text>
+      <text class="grid-text">{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 登录状态提示 -->
+  <view class="status-card" wx:if="{{isLoggedIn}}">
+    <text class="status-text">✓ 您已登录</text>
+  </view>
+</view>

@@ -1,0 +1,42 @@
+/* pages/settings/settings.wxss */
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.setting-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.label-text {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.label-desc {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.btn-danger {
+  background-color: #FF6B6B;
+}
+
+.about-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  padding: 20rpx 0;
+}
+
+.info-item {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+}

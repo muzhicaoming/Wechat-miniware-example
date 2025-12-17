@@ -1,0 +1,47 @@
+<!--pages/todo/todo.wxml-->
+<view class="container">
+  <view class="card">
+    <view class="title">待办事项</view>
+    
+    <view class="input-group">
+      <input 
+        class="input" 
+        placeholder="输入待办事项..." 
+        value="{{inputValue}}"
+        bindinput="onInput"
+        confirm-type="done"
+        bindconfirm="addTodo"
+      />
+      <button class="btn-add" bindtap="addTodo">添加</button>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="todo-header">
+      <text class="todo-count">共 {{todoList.length}} 项</text>
+      <text class="btn-clear" bindtap="clearCompleted">清空已完成</text>
+    </view>
+    
+    <view class="todo-list">
+      <view 
+        class="todo-item {{item.completed ? 'completed' : ''}}" 
+        wx:for="{{todoList}}" 
+        wx:key="id"
+      >
+        <view class="todo-content" data-id="{{item.id}}" bindtap="toggleTodo">
+          <text class="todo-checkbox">{{item.completed ? '✓' : '○'}}</text>
+          <text class="todo-text">{{item.content}}</text>
+        </view>
+        <text 
+          class="todo-delete" 
+          data-id="{{item.id}}" 
+          bindtap="deleteTodo"
+        >删除</text>
+      </view>
+      
+      <view class="empty-tip" wx:if="{{todoList.length === 0}}">
+        <text>暂无待办事项</text>
+      </view>
+    </view>
+  </view>
+</view>

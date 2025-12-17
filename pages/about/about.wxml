@@ -1,0 +1,33 @@
+<!--pages/about/about.wxml-->
+<view class="container">
+  <view class="card about-card">
+    <view class="app-icon">📱</view>
+    <text class="app-name">{{appInfo.name}}</text>
+    <text class="app-version">版本 {{appInfo.version}}</text>
+  </view>
+
+  <view class="card">
+    <view class="title">应用简介</view>
+    <text class="description">{{appInfo.description}}</text>
+  </view>
+
+  <view class="card">
+    <view class="title">功能特性</view>
+    <view class="features-list">
+      <view class="feature-item" wx:for="{{appInfo.features}}" wx:key="*this">
+        <text class="feature-icon">✓</text>
+        <text class="feature-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="title">技术架构</view>
+    <view class="tech-list">
+      <text class="tech-item">• 纯前端架构</text>
+      <text class="tech-item">• 本地存储方案</text>
+      <text class="tech-item">• 微信小程序框架</text>
+      <text class="tech-item">• 无后端依赖</text>
+    </view>
+  </view>
+</view>

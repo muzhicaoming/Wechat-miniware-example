@@ -1,0 +1,58 @@
+/* pages/profile/profile.wxss */
+.profile-card {
+  text-align: center;
+  padding: 60rpx 30rpx;
+}
+
+.avatar-container {
+  margin-bottom: 30rpx;
+}
+
+.avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  border: 4rpx solid #4A90E2;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.username {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.user-id {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.info-label {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.tip-text {
+  font-size: 28rpx;
+  color: #999;
+  text-align: center;
+  display: block;
+  margin-bottom: 20rpx;
+}

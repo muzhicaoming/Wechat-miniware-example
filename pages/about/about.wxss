@@ -1,0 +1,66 @@
+/* pages/about/about.wxss */
+.about-card {
+  text-align: center;
+  padding: 60rpx 30rpx;
+}
+
+.app-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+}
+
+.app-name {
+  display: block;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.app-version {
+  display: block;
+  font-size: 26rpx;
+  color: #999;
+}
+
+.description {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.8;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-top: 20rpx;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.feature-icon {
+  font-size: 28rpx;
+  color: #50C878;
+}
+
+.feature-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.tech-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+  margin-top: 20rpx;
+}
+
+.tech-item {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+}

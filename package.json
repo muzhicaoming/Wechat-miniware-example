@@ -1,0 +1,30 @@
+{
+  "name": "wechat-miniware-example",
+  "version": "1.0.0",
+  "description": "微信小程序示例项目 - 纯前端架构",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [
+    "wechat",
+    "miniprogram",
+    "frontend"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
+    "collectCoverageFrom": [
+      "utils/**/*.js"
+    ]
+  }
+}

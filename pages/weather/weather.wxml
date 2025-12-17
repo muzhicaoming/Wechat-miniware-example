@@ -1,0 +1,59 @@
+<!--pages/weather/weather.wxml-->
+<view class="container">
+  <view class="card">
+    <view class="title">天气查询</view>
+    
+    <view class="input-group">
+      <input 
+        class="input" 
+        placeholder="输入城市名称" 
+        value="{{inputCity}}"
+        bindinput="onCityInput"
+        confirm-type="search"
+        bindconfirm="queryWeather"
+      />
+      <button class="btn" bindtap="queryWeather">查询</button>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{weather}}">
+    <view class="weather-header">
+      <text class="city-name">{{city}}</text>
+      <text class="weather-temp">{{weather.temp}}°C</text>
+    </view>
+    
+    <view class="weather-info">
+      <view class="weather-item">
+        <text class="weather-label">天气状况</text>
+        <text class="weather-value">{{weather.condition}}</text>
+      </view>
+      <view class="weather-item">
+        <text class="weather-label">湿度</text>
+        <text class="weather-value">{{weather.humidity}}%</text>
+      </view>
+      <view class="weather-item">
+        <text class="weather-label">风力</text>
+        <text class="weather-value">{{weather.wind}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="subtitle">快速选择城市</view>
+    <view class="city-list">
+      <text 
+        class="city-tag {{city === item ? 'active' : ''}}"
+        wx:for="{{cityList}}" 
+        wx:key="*this"
+        data-city="{{item}}"
+        bindtap="selectCity"
+      >{{item}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="tip">
+      <text>提示：本功能为演示版本，使用模拟数据，不调用真实天气API。</text>
+    </view>
+  </view>
+</view>

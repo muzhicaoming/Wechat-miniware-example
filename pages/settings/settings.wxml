@@ -1,0 +1,44 @@
+<!--pages/settings/settings.wxml-->
+<view class="container">
+  <view class="card">
+    <view class="title">应用设置</view>
+    
+    <view class="setting-item">
+      <view class="setting-label">
+        <text class="label-text">主题模式</text>
+        <text class="label-desc">{{settings.theme === 'light' ? '浅色' : '深色'}}</text>
+      </view>
+      <switch checked="{{settings.theme === 'dark'}}" bindchange="toggleTheme" color="#4A90E2"/>
+    </view>
+    
+    <view class="setting-item">
+      <view class="setting-label">
+        <text class="label-text">消息通知</text>
+        <text class="label-desc">接收应用通知</text>
+      </view>
+      <switch checked="{{settings.notifications}}" bindchange="toggleNotifications" color="#4A90E2"/>
+    </view>
+    
+    <view class="setting-item">
+      <view class="setting-label">
+        <text class="label-text">自动保存</text>
+        <text class="label-desc">自动保存编辑内容</text>
+      </view>
+      <switch checked="{{settings.autoSave}}" bindchange="toggleAutoSave" color="#4A90E2"/>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="title">数据管理</view>
+    <button class="btn btn-danger" bindtap="clearAllData">清除所有数据</button>
+  </view>
+
+  <view class="card">
+    <view class="title">关于</view>
+    <view class="about-info">
+      <text class="info-item">版本号：1.0.0</text>
+      <text class="info-item">构建时间：2024-01-01</text>
+      <text class="info-item">存储方式：本地存储</text>
+    </view>
+  </view>
+</view>
