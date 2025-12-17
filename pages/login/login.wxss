@@ -1,6 +1,49 @@
 /* pages/login/login.wxss */
-.desc {
-  font-size: 24rpx;
+.card {
+  margin-top: 40rpx;
+}
+
+.title {
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 40rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 2rpx solid #F0F0F0;
+}
+
+.input {
+  background-color: #FAFAFA;
+  padding: 24rpx 20rpx;
+  font-size: 30rpx;
+  margin: 24rpx 0;
+}
+
+.input::placeholder {
   color: #999;
-  line-height: 1.6;
+}
+
+.btn {
+  margin-top: 40rpx;
+  font-weight: 500;
+  letter-spacing: 2rpx;
+}
+
+.btn-secondary {
+  margin-top: 20rpx;
+}
+
+.subtitle {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.desc {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.8;
+  padding: 20rpx 0;
 }
