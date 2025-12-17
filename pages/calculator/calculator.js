@@ -96,7 +96,15 @@ Page({
       case '*':
         return prev * next
       case '/':
-        return next !== 0 ? prev / next : 0
+        if (next === 0) {
+          wx.showToast({
+            title: '除数不能为0',
+            icon: 'none',
+            duration: 2000
+          })
+          return prev // 返回被除数，保持原值
+        }
+        return prev / next
       case '=':
         return next
       default:

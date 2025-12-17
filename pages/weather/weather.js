@@ -57,7 +57,7 @@ Page({
   queryWeather() {
     const { inputCity } = this.data
     
-    if (!inputCity.trim()) {
+    if (!inputCity || !inputCity.trim()) {
       wx.showToast({
         title: '请输入城市名称',
         icon: 'none'
@@ -65,23 +65,34 @@ Page({
       return
     }
 
-    // 模拟查询（纯前端）
-    const weather = weatherData[inputCity] || {
-      temp: Math.floor(Math.random() * 15) + 20,
-      condition: ['晴', '多云', '小雨'][Math.floor(Math.random() * 3)],
-      humidity: Math.floor(Math.random() * 30) + 50,
-      wind: Math.floor(Math.random() * 3) + 1 + '级'
-    }
-
-    this.setData({
-      city: inputCity,
-      weather,
-      inputCity: ''
+    // 显示加载状态
+    wx.showLoading({
+      title: '查询中...',
+      mask: true
     })
 
-    wx.showToast({
-      title: '查询成功',
-      icon: 'success'
-    })
+    // 模拟查询延迟（纯前端）
+    setTimeout(() => {
+      const weather = weatherData[inputCity] || {
+        temp: Math.floor(Math.random() * 15) + 20,
+        condition: ['晴', '多云', '小雨'][Math.floor(Math.random() * 3)],
+        humidity: Math.floor(Math.random() * 30) + 50,
+        wind: Math.floor(Math.random() * 3) + 1 + '级'
+      }
+
+      this.setData({
+        city: inputCity,
+        weather,
+        inputCity: ''
+      })
+
+      // 隐藏加载状态
+      wx.hideLoading()
+
+      wx.showToast({
+        title: '查询成功',
+        icon: 'success'
+      })
+    }, 500) // 模拟网络延迟
   }
 })

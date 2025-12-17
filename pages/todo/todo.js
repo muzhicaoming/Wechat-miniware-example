@@ -38,10 +38,11 @@ Page({
   addTodo() {
     const { inputValue, todoList } = this.data
     
-    if (!inputValue.trim()) {
+    if (!inputValue || !inputValue.trim()) {
       wx.showToast({
-        title: '请输入待办内容',
-        icon: 'none'
+        title: '请输入有效的待办内容',
+        icon: 'none',
+        duration: 2000
       })
       return
     }

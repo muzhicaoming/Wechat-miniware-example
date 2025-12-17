@@ -22,9 +22,16 @@ Page({
     const isLoggedIn = auth.isLoggedIn()
     const userInfo = auth.getUserInfo()
     
-    let loginTime = ''
+    let loginTime = '未知'
     if (userInfo && userInfo.loginTime) {
-      loginTime = new Date(userInfo.loginTime).toLocaleString('zh-CN')
+      try {
+        const date = new Date(userInfo.loginTime)
+        if (!isNaN(date.getTime())) {
+          loginTime = date.toLocaleString('zh-CN')
+        }
+      } catch (e) {
+        console.error('登录时间格式化失败:', e)
+      }
     }
     
     this.setData({

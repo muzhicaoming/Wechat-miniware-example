@@ -21,13 +21,30 @@ Page({
    */
   loadMemoList() {
     const memoList = storage.get(MEMO_KEY, [])
-    // 格式化时间显示
-    const formattedList = memoList.map(memo => ({
-      ...memo,
-      createTimeStr: new Date(memo.createTime).toLocaleString('zh-CN')
-    }))
+    // 格式化时间显示，添加错误处理
+    const formattedList = memoList.map(memo => {
+      let createTimeStr = '未知时间'
+      if (memo.createTime) {
+        try {
+          const date = new Date(memo.createTime)
+          if (!isNaN(date.getTime())) {
+            createTimeStr = date.toLocaleString('zh-CN')
+          }
+        } catch (e) {
+          console.error('时间格式化失败:', e)
+        }
+      }
+      return {
+        ...memo,
+        createTimeStr
+      }
+    })
     this.setData({
-      memoList: formattedList.sort((a, b) => b.createTime - a.createTime)
+      memoList: formattedList.sort((a, b) => {
+        const timeA = a.createTime || 0
+        const timeB = b.createTime || 0
+        return timeB - timeA
+      })
     })
   },
 

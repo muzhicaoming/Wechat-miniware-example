@@ -78,10 +78,6 @@ Page({
       success: (res) => {
         if (res.confirm) {
           storage.clear()
-          wx.showToast({
-            title: '已清除所有数据',
-            icon: 'success'
-          })
           
           // 重置设置
           this.setData({
@@ -91,6 +87,26 @@ Page({
               autoSave: true
             }
           })
+          
+          wx.showToast({
+            title: '已清除所有数据',
+            icon: 'success',
+            duration: 2000
+          })
+          
+          // 延迟跳转到首页，确保数据清除完成
+          setTimeout(() => {
+            wx.reLaunch({
+              url: '/pages/index/index',
+              success: () => {
+                wx.showToast({
+                  title: '请刷新页面查看',
+                  icon: 'none',
+                  duration: 2000
+                })
+              }
+            })
+          }, 2000)
         }
       }
     })
