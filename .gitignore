@@ -4,6 +4,11 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+# 云开发模板文件（不需要）
+miniprogram/
+cloudfunctions/
+uploadCloudFunction.sh
+
 # IDE
 .idea/
 .vscode/
