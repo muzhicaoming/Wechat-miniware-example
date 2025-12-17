@@ -101,3 +101,20 @@
 .btn-zero {
   flex: 2;
 }
+
+.btn-equals-tall {
+  position: absolute;
+  right: 40rpx;
+  height: 220rpx;
+  margin-top: -120rpx;
+}
+
+.btn-placeholder {
+  flex: 1;
+  height: 100rpx;
+  margin-right: 20rpx;
+}
+
+.btn-placeholder:last-child {
+  margin-right: 0;
+}
