@@ -30,28 +30,17 @@
   display: flex;
   flex-direction: column;
   gap: 20rpx;
-  position: relative;
 }
 
 .button-row {
   display: flex;
   flex-direction: row;
-  gap: 20rpx;
   width: 100%;
-  position: relative;
+  margin-bottom: 20rpx;
 }
 
-.button-row-with-equals {
-  display: flex;
-  flex-direction: row;
-  gap: 20rpx;
-}
-
-.left-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 20rpx;
-  flex: 3;
+.button-row:last-child {
+  margin-bottom: 0;
 }
 
 .btn {
@@ -60,13 +49,17 @@
   border-radius: 8rpx;
   font-size: 32rpx;
   border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
+  display: block;
+  line-height: 100rpx;
+  text-align: center;
   box-sizing: border-box;
   padding: 0;
-  margin: 0;
+  margin-right: 20rpx;
+  min-width: 0;
+}
+
+.btn:last-child {
+  margin-right: 0;
 }
 
 .btn-number {
@@ -105,18 +98,6 @@
   background-color: #45B869;
 }
 
-.btn-equals-tall {
-  flex: 1;
-  height: 220rpx;
-  align-self: flex-start;
-}
-
 .btn-zero {
   flex: 2;
-}
-
-.btn-placeholder {
-  flex: 1;
-  height: 100rpx;
-  visibility: hidden;
 }
