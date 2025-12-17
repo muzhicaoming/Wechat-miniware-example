@@ -4,22 +4,35 @@
     <view class="avatar-container">
       <image 
         class="avatar" 
-        src="{{userInfo.avatar || '/images/default-avatar.png'}}"
+        src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}"
         mode="aspectFill"
       />
     </view>
     <view class="user-info">
-      <text class="username">{{userInfo.nickname || userInfo.username}}</text>
-      <text class="user-id">用户名: {{userInfo.username}}</text>
+      <text class="username">{{userInfo.nickName || '未登录'}}</text>
+      <text class="user-location" wx:if="{{userInfo.province || userInfo.city}}">
+        {{userInfo.province}}{{userInfo.city}}
+      </text>
     </view>
   </view>
 
   <view class="card" wx:if="{{isLoggedIn}}">
-    <view class="info-item">
+    <view class="info-item" wx:if="{{userInfo.country}}">
+      <text class="info-label">国家/地区</text>
+      <text class="info-value">{{userInfo.country}}</text>
+    </view>
+    <view class="info-item" wx:if="{{userInfo.province}}">
+      <text class="info-label">省份</text>
+      <text class="info-value">{{userInfo.province}}</text>
+    </view>
+    <view class="info-item" wx:if="{{userInfo.city}}">
+      <text class="info-label">城市</text>
+      <text class="info-value">{{userInfo.city}}</text>
+    </view>
+    <view class="info-item" wx:if="{{loginTime}}">
       <text class="info-label">登录时间</text>
       <text class="info-value">{{loginTime}}</text>
     </view>
-    <button class="btn" bindtap="handleEdit">编辑信息</button>
   </view>
 
   <view class="card" wx:else>

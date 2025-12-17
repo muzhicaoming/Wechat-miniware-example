@@ -27,7 +27,7 @@
   color: #333;
 }
 
-.user-id {
+.user-location {
   font-size: 24rpx;
   color: #999;
 }

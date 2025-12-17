@@ -1,36 +1,43 @@
 <!--pages/login/login.wxml-->
 <view class="container">
-  <view class="card">
-    <view class="title">用户登录</view>
+  <!-- 已登录状态 -->
+  <view class="card" wx:if="{{isLoggedIn && userInfo}}">
+    <view class="title">用户信息</view>
     
-    <input 
-      class="input" 
-      placeholder="请输入用户名" 
-      value="{{username}}"
-      bindinput="onUsernameInput"
-    />
+    <view class="user-info-card">
+      <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      <view class="user-details">
+        <text class="nickname">{{userInfo.nickName}}</text>
+        <text class="location" wx:if="{{userInfo.province || userInfo.city}}">
+          {{userInfo.province}}{{userInfo.city}}
+        </text>
+      </view>
+    </view>
     
-    <input 
-      class="input" 
-      type="password" 
-      placeholder="请输入密码" 
-      value="{{password}}"
-      bindinput="onPasswordInput"
-    />
+    <button class="btn btn-secondary" bindtap="handleLogout">退出登录</button>
+  </view>
+
+  <!-- 未登录状态 -->
+  <view class="card" wx:else>
+    <view class="title">微信登录</view>
     
-    <input 
-      class="input" 
-      placeholder="请输入昵称（可选）" 
-      value="{{nickname}}"
-      bindinput="onNicknameInput"
-    />
+    <view class="login-tip">
+      <text class="tip-icon">🔐</text>
+      <text class="tip-text">使用微信账号登录</text>
+    </view>
     
-    <button class="btn" bindtap="handleLogin">登录</button>
-    <button class="btn btn-secondary" bindtap="handleLogout">登出</button>
+    <button class="btn btn-wechat" bindtap="handleWechatLogin">
+      <text class="btn-icon">💬</text>
+      <text>微信一键登录</text>
+    </button>
+    
+    <view class="login-desc">
+      <text>点击登录即表示同意授权获取您的微信头像、昵称等信息</text>
+    </view>
   </view>
   
   <view class="card">
     <view class="subtitle">说明</view>
-    <text class="desc">本应用为纯前端应用，登录信息仅存储在本地，不会与服务器交互。</text>
+    <text class="desc">本应用使用微信登录，登录信息仅存储在本地，不会上传到服务器。</text>
   </view>
 </view>

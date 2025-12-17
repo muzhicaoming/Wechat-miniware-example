@@ -37,53 +37,21 @@ Page({
     this.setData({
       isLoggedIn,
       userInfo: userInfo || {
-        username: '未登录',
-        nickname: '游客',
-        avatar: ''
+        nickName: '未登录',
+        avatarUrl: ''
       },
       loginTime
     })
   },
 
   /**
-   * 编辑用户信息
+   * 编辑用户信息（微信登录后，昵称等信息由微信提供，暂不支持编辑）
    */
   handleEdit() {
-    if (!this.data.isLoggedIn) {
-      wx.showToast({
-        title: '请先登录',
-        icon: 'none'
-      })
-      wx.navigateTo({
-        url: '/pages/login/login'
-      })
-      return
-    }
-
-    wx.showModal({
-      title: '编辑昵称',
-      editable: true,
-      placeholderText: '请输入新昵称',
-      success: (res) => {
-        if (res.confirm && res.content) {
-          const updated = auth.updateUserInfo({
-            nickname: res.content
-          })
-          
-          if (updated) {
-            wx.showToast({
-              title: '更新成功',
-              icon: 'success'
-            })
-            this.loadUserInfo()
-          } else {
-            wx.showToast({
-              title: '更新失败',
-              icon: 'none'
-            })
-          }
-        }
-      }
+    wx.showToast({
+      title: '微信登录信息由微信提供，暂不支持编辑',
+      icon: 'none',
+      duration: 2000
     })
   },
 

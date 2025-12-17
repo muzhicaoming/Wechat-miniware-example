@@ -3,90 +3,137 @@ const auth = require('../../utils/auth.js')
 
 Page({
   data: {
-    username: '',
-    password: '',
-    nickname: ''
+    userInfo: null,
+    isLoggedIn: false
   },
 
   onLoad() {
-    // 如果已登录，显示用户信息
-    if (auth.isLoggedIn()) {
-      const userInfo = auth.getUserInfo()
-      this.setData({
-        username: userInfo.username || '',
-        nickname: userInfo.nickname || ''
-      })
-    }
+    // 检查登录状态
+    this.checkLoginStatus()
+  },
+
+  onShow() {
+    // 每次显示页面时检查登录状态
+    this.checkLoginStatus()
   },
 
   /**
-   * 输入用户名
+   * 检查登录状态
    */
-  onUsernameInput(e) {
+  checkLoginStatus() {
+    const isLoggedIn = auth.isLoggedIn()
+    const userInfo = auth.getUserInfo()
+    
     this.setData({
-      username: e.detail.value
+      isLoggedIn,
+      userInfo: userInfo || null
     })
   },
 
   /**
-   * 输入密码
+   * 微信登录
    */
-  onPasswordInput(e) {
-    this.setData({
-      password: e.detail.value
+  handleWechatLogin() {
+    // 先调用 wx.login 获取 code
+    wx.login({
+      success: (res) => {
+        if (res.code) {
+          // 获取用户信息需要用户授权
+          this.getUserProfile()
+        } else {
+          wx.showToast({
+            title: '登录失败，请重试',
+            icon: 'none'
+          })
+        }
+      },
+      fail: (err) => {
+        console.error('wx.login 失败:', err)
+        wx.showToast({
+          title: '登录失败，请重试',
+          icon: 'none'
+        })
+      }
     })
   },
 
   /**
-   * 输入昵称
+   * 获取用户信息
    */
-  onNicknameInput(e) {
-    this.setData({
-      nickname: e.detail.value
+  getUserProfile() {
+    wx.getUserProfile({
+      desc: '用于完善用户资料',
+      success: (res) => {
+        const { userInfo } = res
+        
+        // 获取微信登录凭证
+        wx.login({
+          success: (loginRes) => {
+            // 构建用户信息对象
+            const userData = {
+              nickName: userInfo.nickName,
+              avatarUrl: userInfo.avatarUrl,
+              gender: userInfo.gender,
+              country: userInfo.country,
+              province: userInfo.province,
+              city: userInfo.city,
+              language: userInfo.language,
+              code: loginRes.code, // 微信登录凭证
+              openid: null // 纯前端应用，无法获取openid
+            }
+
+            // 保存用户信息
+            if (auth.login(userData)) {
+              wx.showToast({
+                title: '登录成功',
+                icon: 'success'
+              })
+              
+              // 更新全局状态
+              const app = getApp()
+              app.globalData.userInfo = userData
+              app.globalData.isLoggedIn = true
+
+              // 更新页面数据
+              this.setData({
+                isLoggedIn: true,
+                userInfo: userData
+              })
+
+              setTimeout(() => {
+                wx.navigateBack()
+              }, 1500)
+            } else {
+              wx.showToast({
+                title: '登录失败',
+                icon: 'none'
+              })
+            }
+          },
+          fail: (err) => {
+            console.error('获取登录凭证失败:', err)
+            wx.showToast({
+              title: '登录失败，请重试',
+              icon: 'none'
+            })
+          }
+        })
+      },
+      fail: (err) => {
+        console.error('getUserProfile 失败:', err)
+        if (err.errMsg.includes('deny')) {
+          wx.showToast({
+            title: '需要授权才能登录',
+            icon: 'none'
+          })
+        } else {
+          wx.showToast({
+            title: '获取用户信息失败',
+            icon: 'none'
+          })
+        }
+      }
     })
-  },
-
-  /**
-   * 登录
-   */
-  handleLogin() {
-    const { username, password, nickname } = this.data
-
-    if (!username || !password) {
-      wx.showToast({
-        title: '请输入用户名和密码',
-        icon: 'none'
-      })
-      return
-    }
-
-    // 模拟登录（纯前端，不调用后端）
-    const userInfo = {
-      username,
-      nickname: nickname || username,
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`
-    }
-
-    if (auth.login(userInfo)) {
-      wx.showToast({
-        title: '登录成功',
-        icon: 'success'
-      })
-      
-      // 更新全局状态
-      const app = getApp()
-      app.globalData.userInfo = userInfo
-      app.globalData.isLoggedIn = true
-
-      setTimeout(() => {
-        wx.navigateBack()
-      }, 1500)
-    } else {
-      wx.showToast({
-        title: '登录失败',
-        icon: 'none'
-      })
-    }
   },
 
   /**
@@ -109,10 +156,10 @@ Page({
             app.globalData.userInfo = null
             app.globalData.isLoggedIn = false
 
+            // 更新页面数据
             this.setData({
-              username: '',
-              password: '',
-              nickname: ''
+              isLoggedIn: false,
+              userInfo: null
             })
           }
         }
