@@ -21,18 +21,22 @@
       </view>
       
       <!-- 第三行 -->
-      <view class="button-row">
-        <button class="btn btn-number" data-num="4" bindtap="inputNumber">4</button>
-        <button class="btn btn-number" data-num="5" bindtap="inputNumber">5</button>
-        <button class="btn btn-number" data-num="6" bindtap="inputNumber">6</button>
+      <view class="button-row button-row-with-equals">
+        <view class="left-buttons">
+          <button class="btn btn-number" data-num="4" bindtap="inputNumber">4</button>
+          <button class="btn btn-number" data-num="5" bindtap="inputNumber">5</button>
+          <button class="btn btn-number" data-num="6" bindtap="inputNumber">6</button>
+        </view>
         <button class="btn btn-equals btn-equals-tall" bindtap="calculateResult">=</button>
       </view>
       
       <!-- 第四行 -->
-      <view class="button-row">
-        <button class="btn btn-number" data-num="1" bindtap="inputNumber">1</button>
-        <button class="btn btn-number" data-num="2" bindtap="inputNumber">2</button>
-        <button class="btn btn-number" data-num="3" bindtap="inputNumber">3</button>
+      <view class="button-row button-row-with-equals">
+        <view class="left-buttons">
+          <button class="btn btn-number" data-num="1" bindtap="inputNumber">1</button>
+          <button class="btn btn-number" data-num="2" bindtap="inputNumber">2</button>
+          <button class="btn btn-number" data-num="3" bindtap="inputNumber">3</button>
+        </view>
         <view class="btn-placeholder"></view>
       </view>
       

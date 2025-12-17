@@ -41,6 +41,19 @@
   position: relative;
 }
 
+.button-row-with-equals {
+  display: flex;
+  flex-direction: row;
+  gap: 20rpx;
+}
+
+.left-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 20rpx;
+  flex: 3;
+}
+
 .btn {
   flex: 1;
   height: 100rpx;
@@ -93,10 +106,9 @@
 }
 
 .btn-equals-tall {
-  position: absolute;
-  right: 0;
+  flex: 1;
   height: 220rpx;
-  top: 200rpx;
+  align-self: flex-start;
 }
 
 .btn-zero {
