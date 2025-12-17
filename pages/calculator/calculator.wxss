@@ -27,14 +27,13 @@
 }
 
 .buttons {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 }
 
 .button-row {
   display: flex;
-  flex-direction: row;
   width: 100%;
+  gap: 20rpx;
   margin-bottom: 20rpx;
 }
 
@@ -48,17 +47,11 @@
   border-radius: 8rpx;
   font-size: 32rpx;
   border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
+  line-height: 100rpx;
+  text-align: center;
   padding: 0;
-  margin-right: 20rpx;
-  min-width: 0;
-}
-
-.button-row .btn:last-child {
-  margin-right: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .btn-number {
@@ -99,5 +92,4 @@
 
 .btn-zero {
   flex: 2;
-  margin-right: 20rpx;
 }

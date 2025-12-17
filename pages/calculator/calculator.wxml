@@ -4,7 +4,7 @@
     <view class="display">{{display}}</view>
     
     <view class="buttons">
-      <!-- 第一行 -->
+      <!-- 第一行: C ÷ × - -->
       <view class="button-row">
         <button class="btn btn-clear" bindtap="clear">C</button>
         <button class="btn btn-operator" data-op="/" bindtap="performOperation">÷</button>
@@ -12,7 +12,7 @@
         <button class="btn btn-operator" data-op="-" bindtap="performOperation">-</button>
       </view>
       
-      <!-- 第二行 -->
+      <!-- 第二行: 7 8 9 + -->
       <view class="button-row">
         <button class="btn btn-number" data-num="7" bindtap="inputNumber">7</button>
         <button class="btn btn-number" data-num="8" bindtap="inputNumber">8</button>
@@ -20,31 +20,27 @@
         <button class="btn btn-operator" data-op="+" bindtap="performOperation">+</button>
       </view>
       
-      <!-- 第三行和第四行（等号跨两行） -->
-      <view class="button-row-container">
-        <view class="left-column">
-          <!-- 第三行 -->
-          <view class="button-row">
-            <button class="btn btn-number" data-num="4" bindtap="inputNumber">4</button>
-            <button class="btn btn-number" data-num="5" bindtap="inputNumber">5</button>
-            <button class="btn btn-number" data-num="6" bindtap="inputNumber">6</button>
-          </view>
-          <!-- 第四行 -->
-          <view class="button-row">
-            <button class="btn btn-number" data-num="1" bindtap="inputNumber">1</button>
-            <button class="btn btn-number" data-num="2" bindtap="inputNumber">2</button>
-            <button class="btn btn-number" data-num="3" bindtap="inputNumber">3</button>
-          </view>
-        </view>
-        <button class="btn btn-equals btn-equals-tall" bindtap="calculateResult">=</button>
+      <!-- 第三行: 4 5 6 - -->
+      <view class="button-row">
+        <button class="btn btn-number" data-num="4" bindtap="inputNumber">4</button>
+        <button class="btn btn-number" data-num="5" bindtap="inputNumber">5</button>
+        <button class="btn btn-number" data-num="6" bindtap="inputNumber">6</button>
+        <button class="btn btn-operator" data-op="-" bindtap="performOperation">-</button>
       </view>
       
-      <!-- 第五行 -->
+      <!-- 第四行: 1 2 3 = -->
+      <view class="button-row">
+        <button class="btn btn-number" data-num="1" bindtap="inputNumber">1</button>
+        <button class="btn btn-number" data-num="2" bindtap="inputNumber">2</button>
+        <button class="btn btn-number" data-num="3" bindtap="inputNumber">3</button>
+        <button class="btn btn-equals" bindtap="calculateResult">=</button>
+      </view>
+      
+      <!-- 第五行: 0(双倍宽) . = -->
       <view class="button-row">
         <button class="btn btn-number btn-zero" data-num="0" bindtap="inputNumber">0</button>
         <button class="btn btn-number" bindtap="inputDot">.</button>
-        <view class="btn-placeholder"></view>
-        <view class="btn-placeholder"></view>
+        <button class="btn btn-equals" bindtap="calculateResult">=</button>
       </view>
     </view>
   </view>
