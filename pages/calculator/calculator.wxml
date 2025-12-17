@@ -13,34 +13,35 @@
       </view>
       
       <!-- 第二行和第三行: 7 8 9 和 4 5 6，右侧是大的加号 -->
-      <view class="button-row-container">
-        <view class="left-column">
-          <view class="button-row">
-            <button class="btn btn-number" data-num="7" bindtap="inputNumber">7</button>
-            <button class="btn btn-number" data-num="8" bindtap="inputNumber">8</button>
-            <button class="btn btn-number" data-num="9" bindtap="inputNumber">9</button>
-          </view>
-          <view class="button-row">
-            <button class="btn btn-number" data-num="4" bindtap="inputNumber">4</button>
-            <button class="btn btn-number" data-num="5" bindtap="inputNumber">5</button>
-            <button class="btn btn-number" data-num="6" bindtap="inputNumber">6</button>
-          </view>
+      <view class="button-row-wrapper">
+        <view class="button-row">
+          <button class="btn btn-number" data-num="7" bindtap="inputNumber">7</button>
+          <button class="btn btn-number" data-num="8" bindtap="inputNumber">8</button>
+          <button class="btn btn-number" data-num="9" bindtap="inputNumber">9</button>
+          <view class="btn-spacer"></view>
+        </view>
+        <view class="button-row">
+          <button class="btn btn-number" data-num="4" bindtap="inputNumber">4</button>
+          <button class="btn btn-number" data-num="5" bindtap="inputNumber">5</button>
+          <button class="btn btn-number" data-num="6" bindtap="inputNumber">6</button>
+          <view class="btn-spacer"></view>
         </view>
         <button class="btn btn-operator btn-plus-tall" data-op="+" bindtap="performOperation">+</button>
       </view>
       
       <!-- 第四行和第五行: 1 2 3 和 0 .，右侧是大的等号 -->
-      <view class="button-row-container">
-        <view class="left-column">
-          <view class="button-row">
-            <button class="btn btn-number" data-num="1" bindtap="inputNumber">1</button>
-            <button class="btn btn-number" data-num="2" bindtap="inputNumber">2</button>
-            <button class="btn btn-number" data-num="3" bindtap="inputNumber">3</button>
-          </view>
-          <view class="button-row">
-            <button class="btn btn-number btn-zero" data-num="0" bindtap="inputNumber">0</button>
-            <button class="btn btn-number" bindtap="inputDot">.</button>
-          </view>
+      <view class="button-row-wrapper">
+        <view class="button-row">
+          <button class="btn btn-number" data-num="1" bindtap="inputNumber">1</button>
+          <button class="btn btn-number" data-num="2" bindtap="inputNumber">2</button>
+          <button class="btn btn-number" data-num="3" bindtap="inputNumber">3</button>
+          <view class="btn-spacer"></view>
+        </view>
+        <view class="button-row">
+          <button class="btn btn-number btn-zero" data-num="0" bindtap="inputNumber">0</button>
+          <button class="btn btn-number" bindtap="inputDot">.</button>
+          <view class="btn-spacer"></view>
+          <view class="btn-spacer"></view>
         </view>
         <button class="btn btn-equals btn-equals-tall" bindtap="calculateResult">=</button>
       </view>
