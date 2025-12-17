@@ -1,11 +1,13 @@
 /* pages/calculator/calculator.wxss */
 .calculator {
+  width: 100%;
   max-width: 600rpx;
   margin: 0 auto;
   background-color: #fff;
   border-radius: 16rpx;
   padding: 40rpx;
   box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .display {
@@ -21,15 +23,26 @@
   margin-bottom: 30rpx;
   overflow: hidden;
   box-sizing: border-box;
+  word-break: break-all;
 }
 
 .buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 20rpx;
+  position: relative;
+}
+
+.button-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20rpx;
+  width: 100%;
+  position: relative;
 }
 
 .btn {
+  flex: 1;
   height: 100rpx;
   border-radius: 8rpx;
   font-size: 32rpx;
@@ -37,6 +50,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .btn-number {
@@ -75,6 +92,19 @@
   background-color: #45B869;
 }
 
+.btn-equals-tall {
+  position: absolute;
+  right: 0;
+  height: 220rpx;
+  top: 200rpx;
+}
+
 .btn-zero {
-  grid-column: span 2;
+  flex: 2;
+}
+
+.btn-placeholder {
+  flex: 1;
+  height: 100rpx;
+  visibility: hidden;
 }
