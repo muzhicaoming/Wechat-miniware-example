@@ -42,30 +42,6 @@
   margin-bottom: 0;
 }
 
-.button-row-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  margin-bottom: 20rpx;
-  position: relative;
-}
-
-.left-column {
-  flex: 3;
-  display: flex;
-  flex-direction: column;
-  margin-right: 20rpx;
-}
-
-.left-column .button-row {
-  margin-bottom: 20rpx;
-  width: 100%;
-}
-
-.left-column .button-row:last-child {
-  margin-bottom: 0;
-}
-
 .btn {
   flex: 1;
   height: 100rpx;
@@ -81,7 +57,7 @@
   min-width: 0;
 }
 
-.btn:last-child {
+.button-row .btn:last-child {
   margin-right: 0;
 }
 
@@ -121,22 +97,7 @@
   background-color: #45B869;
 }
 
-.btn-equals-tall {
-  flex: 1;
-  height: 220rpx;
-  margin-right: 0;
-}
-
 .btn-zero {
   flex: 2;
-}
-
-.btn-placeholder {
-  flex: 1;
-  height: 100rpx;
   margin-right: 20rpx;
-}
-
-.btn-placeholder:last-child {
-  margin-right: 0;
 }
