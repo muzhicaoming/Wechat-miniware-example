@@ -15,13 +15,20 @@
 
 .input {
   background-color: #FAFAFA;
-  padding: 24rpx 20rpx;
+  padding: 28rpx 20rpx;
   font-size: 30rpx;
+  line-height: 1.5;
+  min-height: 88rpx;
   margin: 24rpx 0;
+  box-sizing: border-box;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
 }
 
 .input::placeholder {
   color: #999;
+  line-height: 1.5;
 }
 
 .btn {

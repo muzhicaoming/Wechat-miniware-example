@@ -43,16 +43,23 @@ page {
 /* 输入框样式 */
 .input {
   width: 100%;
-  padding: 20rpx;
+  padding: 28rpx 20rpx;
   border: 2rpx solid #E0E0E0;
   border-radius: 8rpx;
   font-size: 28rpx;
+  line-height: 1.5;
+  min-height: 88rpx;
   box-sizing: border-box;
   margin: 20rpx 0;
+  vertical-align: middle;
 }
 
 .input:focus {
   border-color: #4A90E2;
+}
+
+.input::placeholder {
+  line-height: 1.5;
 }
 
 /* 标题样式 */
