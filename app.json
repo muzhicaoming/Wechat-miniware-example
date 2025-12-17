@@ -17,26 +17,6 @@
     "navigationBarTextStyle": "white",
     "backgroundColor": "#F5F5F5"
   },
-  "tabBar": {
-    "color": "#7A7E83",
-    "selectedColor": "#4A90E2",
-    "borderStyle": "black",
-    "backgroundColor": "#ffffff",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "iconPath": "images/home.png",
-        "selectedIconPath": "images/home-active.png",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/profile/profile",
-        "iconPath": "images/user.png",
-        "selectedIconPath": "images/user-active.png",
-        "text": "我的"
-      }
-    ]
-  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

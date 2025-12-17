@@ -1,7 +1,8 @@
 {
   "description": "微信小程序示例项目",
   "packOptions": {
-    "ignore": []
+    "ignore": [],
+    "include": []
   },
   "setting": {
     "urlCheck": false,
@@ -44,5 +45,9 @@
   "libVersion": "2.19.4",
   "appid": "wxa510a56a488e9c1b",
   "projectname": "wechat-miniware-example",
-  "condition": {}
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
 }
