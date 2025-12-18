@@ -142,7 +142,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: calc(25% - 12rpx);
+  width: 136rpx;
   height: 288rpx;
   border-radius: 68rpx;
   font-size: 56rpx;
