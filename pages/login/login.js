@@ -1,5 +1,6 @@
 // pages/login/login.js
 const auth = require('../../utils/auth.js')
+const avatar = require('../../utils/avatar.js')
 
 Page({
   data: {
@@ -31,133 +32,9 @@ Page({
   },
 
   /**
-   * 通过 button 的 open-type="getUserProfile" 获取用户信息
-   * 这种方式更可靠，是微信官方推荐的方式
-   */
-  onGetUserProfile(e) {
-    console.log('onGetUserProfile:', e)
-    
-    if (e.detail.errMsg === 'getUserProfile:ok') {
-      const { userInfo } = e.detail
-      
-      // 获取微信登录凭证
-      wx.login({
-        success: (loginRes) => {
-          if (loginRes.code) {
-            // 构建用户信息对象
-            const userData = {
-              nickName: userInfo.nickName || '微信用户',
-              avatarUrl: userInfo.avatarUrl || '',
-              gender: userInfo.gender || 0,
-              country: userInfo.country || '',
-              province: userInfo.province || '',
-              city: userInfo.city || '',
-              language: userInfo.language || 'zh_CN',
-              code: loginRes.code, // 微信登录凭证
-              openid: null // 纯前端应用，无法获取openid
-            }
-
-            // 保存用户信息
-            if (auth.login(userData)) {
-              wx.showToast({
-                title: '登录成功',
-                icon: 'success',
-                duration: 2000
-              })
-              
-              // 更新全局状态
-              const app = getApp()
-              if (app) {
-                app.globalData.userInfo = userData
-                app.globalData.isLoggedIn = true
-              }
-
-              // 更新页面数据
-              this.setData({
-                isLoggedIn: true,
-                userInfo: userData
-              })
-
-              setTimeout(() => {
-                wx.navigateBack()
-              }, 1500)
-            } else {
-              wx.showToast({
-                title: '保存登录信息失败',
-                icon: 'none',
-                duration: 2000
-              })
-            }
-          } else {
-            wx.showToast({
-              title: '获取登录凭证失败',
-              icon: 'none',
-              duration: 2000
-            })
-          }
-        },
-        fail: (err) => {
-          console.error('wx.login 失败:', err)
-          wx.showToast({
-            title: '获取登录凭证失败',
-            icon: 'none',
-            duration: 2000
-          })
-        }
-      })
-    } else {
-      // 用户拒绝授权或其他错误
-      const errMsg = e.detail.errMsg || '获取用户信息失败'
-      console.error('getUserProfile 失败:', errMsg)
-      
-      if (errMsg.includes('deny') || errMsg.includes('cancel')) {
-        wx.showToast({
-          title: '需要授权才能登录',
-          icon: 'none',
-          duration: 2000
-        })
-      } else {
-        // 显示详细错误信息用于调试
-        wx.showToast({
-          title: errMsg.length > 15 ? '获取用户信息失败' : errMsg,
-          icon: 'none',
-          duration: 3000
-        })
-      }
-    }
-  },
-
-  /**
-   * 微信登录（保留作为备用方案）
+   * 微信一键登录：在点击事件中直接调用 wx.getUserProfile（官方推荐用法）
    */
   handleWechatLogin() {
-    // 先调用 wx.login 获取 code
-    wx.login({
-      success: (res) => {
-        if (res.code) {
-          // 获取用户信息需要用户授权
-          this.getUserProfile()
-        } else {
-          wx.showToast({
-            title: '登录失败，请重试',
-            icon: 'none'
-          })
-        }
-      },
-      fail: (err) => {
-        console.error('wx.login 失败:', err)
-        wx.showToast({
-          title: '登录失败，请重试',
-          icon: 'none'
-        })
-      }
-    })
-  },
-
-  /**
-   * 获取用户信息（备用方案）
-   */
-  getUserProfile() {
     wx.getUserProfile({
       desc: '用于完善用户资料',
       success: (res) => {
@@ -166,47 +43,32 @@ Page({
         // 获取微信登录凭证
         wx.login({
           success: (loginRes) => {
-            if (loginRes.code) {
-              // 构建用户信息对象
-              const userData = {
-                nickName: userInfo.nickName || '微信用户',
-                avatarUrl: userInfo.avatarUrl || '',
-                gender: userInfo.gender || 0,
-                country: userInfo.country || '',
-                province: userInfo.province || '',
-                city: userInfo.city || '',
-                language: userInfo.language || 'zh_CN',
-                code: loginRes.code,
-                openid: null
-              }
-
-              // 保存用户信息
-              if (auth.login(userData)) {
-                wx.showToast({
-                  title: '登录成功',
-                  icon: 'success'
+            if (!loginRes.code) {
+              wx.showToast({
+                title: '获取登录凭证失败',
+                icon: 'none'
+              })
+              return
+            }
+            
+            // 先下载并缓存头像
+            const originalAvatarUrl = userInfo.avatarUrl || ''
+            
+            if (originalAvatarUrl) {
+              // 下载并缓存头像
+              avatar.downloadAndCacheAvatar(originalAvatarUrl)
+                .then((localAvatarPath) => {
+                  // 头像下载成功，保存用户信息（包含本地头像路径）
+                  this.saveUserInfo(userInfo, loginRes.code, originalAvatarUrl, localAvatarPath)
                 })
-                
-                const app = getApp()
-                if (app) {
-                  app.globalData.userInfo = userData
-                  app.globalData.isLoggedIn = true
-                }
-
-                this.setData({
-                  isLoggedIn: true,
-                  userInfo: userData
+                .catch((err) => {
+                  console.error('下载头像失败:', err)
+                  // 即使头像下载失败，也保存用户信息（使用原始URL）
+                  this.saveUserInfo(userInfo, loginRes.code, originalAvatarUrl, null)
                 })
-
-                setTimeout(() => {
-                  wx.navigateBack()
-                }, 1500)
-              } else {
-                wx.showToast({
-                  title: '登录失败',
-                  icon: 'none'
-                })
-              }
+            } else {
+              // 没有头像URL，直接保存用户信息
+              this.saveUserInfo(userInfo, loginRes.code, '', null)
             }
           },
           fail: (err) => {
@@ -236,6 +98,57 @@ Page({
         }
       }
     })
+  },
+
+  /**
+   * 保存用户信息
+   * @param {object} userInfo - 微信返回的用户信息
+   * @param {string} code - 微信登录凭证
+   * @param {string} originalAvatarUrl - 原始头像URL
+   * @param {string|null} localAvatarPath - 本地缓存的头像路径
+   */
+  saveUserInfo(userInfo, code, originalAvatarUrl, localAvatarPath) {
+    // 构建用户信息对象
+    const userData = {
+      nickName: userInfo.nickName || '微信用户',
+      avatarUrl: originalAvatarUrl, // 保留原始URL
+      localAvatarPath: localAvatarPath || null, // 本地缓存路径
+      gender: userInfo.gender || 0,
+      country: userInfo.country || '',
+      province: userInfo.province || '',
+      city: userInfo.city || '',
+      language: userInfo.language || 'zh_CN',
+      code: code,
+      openid: null
+    }
+    
+    // 保存用户信息
+    if (auth.login(userData)) {
+      wx.showToast({
+        title: '登录成功',
+        icon: 'success'
+      })
+      
+      const app = getApp()
+      if (app) {
+        app.globalData.userInfo = userData
+        app.globalData.isLoggedIn = true
+      }
+      
+      this.setData({
+        isLoggedIn: true,
+        userInfo: userData
+      })
+      
+      setTimeout(() => {
+        wx.navigateBack()
+      }, 1500)
+    } else {
+      wx.showToast({
+        title: '保存登录信息失败',
+        icon: 'none'
+      })
+    }
   },
 
   /**

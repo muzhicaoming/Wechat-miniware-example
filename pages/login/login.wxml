@@ -26,11 +26,10 @@
       <text class="tip-text">使用微信账号登录</text>
     </view>
     
-    <!-- 使用 button 的 open-type="getUserProfile" 更可靠 -->
+    <!-- 使用 bindtap + wx.getUserProfile（官方推荐在用户点击事件中调用） -->
     <button 
-      class="btn btn-wechat" 
-      open-type="getUserProfile"
-      bindgetuserprofile="onGetUserProfile">
+      class="btn btn-wechat"
+      bindtap="handleWechatLogin">
       <text class="btn-icon">💬</text>
       <text>微信一键登录</text>
     </button>
