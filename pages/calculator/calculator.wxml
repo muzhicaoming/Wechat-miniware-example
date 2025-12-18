@@ -28,7 +28,7 @@
         <button class="btn btn-operator" data-op="-" bindtap="performOperation">-</button>
       </view>
       
-      <!-- 第四行和第五行: 1 2 3 + 和 0 .，右侧是大的等号 -->
+      <!-- 第四行和第五行: 1 2 3 和 0 . +，右侧是大的等号 -->
       <view class="button-row-wrapper">
         <view class="button-row">
           <button class="btn btn-number" data-num="1" bindtap="inputNumber">1</button>
@@ -40,7 +40,6 @@
           <button class="btn btn-number btn-zero" data-num="0" bindtap="inputNumber">0</button>
           <button class="btn btn-number" bindtap="inputDot">.</button>
           <button class="btn btn-operator" data-op="+" bindtap="performOperation">+</button>
-          <view class="btn-spacer"></view>
         </view>
         <button class="btn btn-equals btn-equals-tall" bindtap="calculateResult">=</button>
       </view>
