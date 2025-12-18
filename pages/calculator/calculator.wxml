@@ -28,23 +28,22 @@
         <button class="btn btn-operator" data-op="-" bindtap="performOperation">-</button>
       </view>
       
-      <!-- 第四行和第五行: 1 2 3 和 0 .，右侧和右下是大的等号 -->
+      <!-- 第四行和第五行: 1 2 3 和 0 .，右侧是竖向长方形等号 -->
       <view class="button-row-wrapper">
-        <!-- 第四行: 1 2 3 -->
+        <!-- 第四行: 1 2 3 （第4列由等号占据） -->
         <view class="button-row">
           <button class="btn btn-number" data-num="1" bindtap="inputNumber">1</button>
           <button class="btn btn-number" data-num="2" bindtap="inputNumber">2</button>
           <button class="btn btn-number" data-num="3" bindtap="inputNumber">3</button>
           <view class="btn-spacer"></view>
         </view>
-        <!-- 第五行: 0 . -->
+        <!-- 第五行: 0 占第1-2列，. 占第3列，第4列由等号占据 -->
         <view class="button-row">
           <button class="btn btn-number btn-zero" data-num="0" bindtap="inputNumber">0</button>
           <button class="btn btn-number" bindtap="inputDot">.</button>
           <view class="btn-spacer"></view>
-          <view class="btn-spacer"></view>
         </view>
-        <!-- 等号按钮：占据第四行右侧和第五行右侧两列 -->
+        <!-- 等号按钮：精确占据第4列（第4行和第5行） -->
         <button class="btn btn-equals btn-equals-tall" bindtap="calculateResult">=</button>
       </view>
     </view>

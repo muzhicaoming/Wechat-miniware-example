@@ -138,11 +138,12 @@
   transform: scale(0.96);
 }
 
+/* 等号：精确占据第4列（第4+5行），宽度与普通按钮一致 */
 .btn-equals-tall {
   position: absolute;
   right: 0;
   top: 0;
-  width: calc(50% - 8rpx);
+  width: calc(25% - 12rpx);
   height: 288rpx;
   border-radius: 68rpx;
   font-size: 56rpx;
