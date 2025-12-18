@@ -57,6 +57,28 @@ Page({
   },
 
   /**
+   * 切换正负号
+   */
+  toggleSign() {
+    const { display } = this.data
+    const value = parseFloat(display)
+    this.setData({
+      display: String(-value)
+    })
+  },
+
+  /**
+   * 百分比
+   */
+  percent() {
+    const { display } = this.data
+    const value = parseFloat(display)
+    this.setData({
+      display: String(value / 100)
+    })
+  },
+
+  /**
    * 执行运算
    */
   performOperation(e) {
@@ -98,11 +120,11 @@ Page({
       case '/':
         if (next === 0) {
           wx.showToast({
-            title: '除数不能为0',
+            title: '不能除以零',
             icon: 'none',
             duration: 2000
           })
-          return prev // 返回被除数，保持原值
+          return prev
         }
         return prev / next
       case '=':

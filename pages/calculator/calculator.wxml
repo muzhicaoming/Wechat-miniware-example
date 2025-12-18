@@ -4,12 +4,12 @@
     <view class="display">{{display}}</view>
     
     <view class="buttons">
-      <!-- 第一行: C ÷ × - -->
+      <!-- 第一行: AC ± % ÷ -->
       <view class="button-row">
-        <button class="btn btn-clear" bindtap="clear">C</button>
+        <button class="btn btn-function" bindtap="clear">AC</button>
+        <button class="btn btn-function" bindtap="toggleSign">±</button>
+        <button class="btn btn-function" bindtap="percent">%</button>
         <button class="btn btn-operator" data-op="/" bindtap="performOperation">÷</button>
-        <button class="btn btn-operator" data-op="*" bindtap="performOperation">×</button>
-        <button class="btn btn-operator" data-op="-" bindtap="performOperation">-</button>
       </view>
       
       <!-- 第二行: 7 8 9 × -->
@@ -28,7 +28,7 @@
         <button class="btn btn-operator" data-op="-" bindtap="performOperation">-</button>
       </view>
       
-      <!-- 第四行和第五行: 1 2 3 和 0 . +，右侧是大的等号 -->
+      <!-- 第四行和第五行: 1 2 3 和 0 .，右侧是大的等号 -->
       <view class="button-row-wrapper">
         <view class="button-row">
           <button class="btn btn-number" data-num="1" bindtap="inputNumber">1</button>

@@ -1,29 +1,43 @@
-/* pages/calculator/calculator.wxss */
+/* pages/calculator/calculator.wxss - iOS Style */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+
 .calculator {
   width: 100%;
-  max-width: 600rpx;
-  margin: 0 auto;
-  background-color: #fff;
-  border-radius: 16rpx;
-  padding: 40rpx;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+  max-width: 680rpx;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 32rpx;
+  padding: 48rpx 32rpx;
+  backdrop-filter: blur(20rpx);
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
 }
 
 .display {
   width: 100%;
-  height: 120rpx;
-  background-color: #1A1A1A;
+  min-height: 160rpx;
+  background-color: rgba(0, 0, 0, 0.3);
   color: #fff;
-  font-size: 48rpx;
+  font-size: 72rpx;
+  font-weight: 300;
   text-align: right;
-  padding: 0 30rpx;
-  line-height: 120rpx;
-  border-radius: 8rpx;
-  margin-bottom: 30rpx;
+  padding: 32rpx 40rpx;
+  line-height: 1.2;
+  border-radius: 24rpx;
+  margin-bottom: 40rpx;
   overflow: hidden;
   box-sizing: border-box;
   word-break: break-all;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .buttons {
@@ -33,8 +47,8 @@
 .button-row {
   display: flex;
   width: 100%;
-  gap: 20rpx;
-  margin-bottom: 20rpx;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
 }
 
 .button-row:last-child {
@@ -44,7 +58,7 @@
 .button-row-wrapper {
   position: relative;
   width: 100%;
-  margin-bottom: 20rpx;
+  margin-bottom: 16rpx;
 }
 
 .button-row-wrapper:last-child {
@@ -52,7 +66,7 @@
 }
 
 .button-row-wrapper .button-row {
-  margin-bottom: 20rpx;
+  margin-bottom: 16rpx;
   width: 100%;
 }
 
@@ -62,104 +76,88 @@
 
 .btn-spacer {
   flex: 1;
-  height: 100rpx;
+  height: 136rpx;
 }
 
 .btn {
   flex: 1;
-  height: 100rpx;
-  border-radius: 12rpx;
-  font-size: 32rpx;
-  font-weight: 500;
+  height: 136rpx;
+  border-radius: 68rpx;
+  font-size: 44rpx;
+  font-weight: 400;
   border: none;
-  line-height: 100rpx;
+  line-height: 136rpx;
   text-align: center;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   transition: all 0.2s;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.2);
 }
 
 .btn-number {
-  background-color: #F5F5F5;
-  color: #333;
+  background-color: rgba(58, 58, 60, 0.9);
+  color: #fff;
 }
 
 .btn-number:active {
-  background-color: #E8E8E8;
-  transform: scale(0.95);
+  background-color: rgba(88, 88, 90, 0.9);
+  transform: scale(0.96);
 }
 
 .btn-operator {
-  background-color: #4A90E2;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #fff;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .btn-operator:active {
-  background-color: #357ABD;
-  transform: scale(0.95);
+  background: linear-gradient(135deg, #5568d3 0%, #63408b 100%);
+  transform: scale(0.96);
 }
 
-.btn-clear {
-  background-color: #FF6B6B;
-  color: #fff;
-  font-weight: 600;
+.btn-function {
+  background-color: rgba(165, 165, 165, 0.9);
+  color: #000;
+  font-weight: 500;
 }
 
-.btn-clear:active {
-  background-color: #E55555;
-  transform: scale(0.95);
+.btn-function:active {
+  background-color: rgba(200, 200, 200, 0.9);
+  transform: scale(0.96);
 }
 
 .btn-equals {
-  background-color: #50C878;
+  background: linear-gradient(135deg, #ff6b9d 0%, #ffa07a 100%);
   color: #fff;
   font-weight: 600;
 }
 
 .btn-equals:active {
-  background-color: #45B869;
-  transform: scale(0.95);
-}
-
-.btn-plus-tall {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: calc(25% - 15rpx);
-  height: 220rpx;
-  font-size: 48rpx;
-  font-weight: 700;
-  line-height: 220rpx;
-  box-shadow: 0 4rpx 12rpx rgba(74, 144, 226, 0.3);
-  border-radius: 12rpx;
-}
-
-.btn-plus-tall:active {
-  transform: scale(0.97);
-  box-shadow: 0 2rpx 8rpx rgba(74, 144, 226, 0.4);
+  background: linear-gradient(135deg, #e55a8a 0%, #ff8c69 100%);
+  transform: scale(0.96);
 }
 
 .btn-equals-tall {
   position: absolute;
   right: 0;
   top: 0;
-  width: calc(25% - 15rpx);
-  height: 220rpx;
-  font-size: 48rpx;
-  font-weight: 700;
-  line-height: 220rpx;
-  box-shadow: 0 4rpx 12rpx rgba(80, 200, 120, 0.3);
-  border-radius: 12rpx;
+  width: calc(25% - 12rpx);
+  height: 288rpx;
+  border-radius: 68rpx;
+  font-size: 56rpx;
+  font-weight: 600;
+  line-height: 288rpx;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 157, 0.4);
 }
 
 .btn-equals-tall:active {
   transform: scale(0.97);
-  box-shadow: 0 2rpx 8rpx rgba(80, 200, 120, 0.4);
+  box-shadow: 0 4rpx 16rpx rgba(255, 107, 157, 0.5);
 }
 
 .btn-zero {
   flex: 2;
+  text-align: left;
+  padding-left: 56rpx;
 }
