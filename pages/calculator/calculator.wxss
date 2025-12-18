@@ -55,6 +55,30 @@
   margin-bottom: 0;
 }
 
+.button-row-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 16rpx;
+}
+
+.button-row-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+.button-row-wrapper .button-row {
+  margin-bottom: 16rpx;
+  width: 100%;
+}
+
+.button-row-wrapper .button-row:last-child {
+  margin-bottom: 0;
+}
+
+.btn-spacer {
+  flex: 1;
+  height: 136rpx;
+}
+
 .btn {
   flex: 1;
   height: 136rpx;
@@ -114,8 +138,22 @@
   transform: scale(0.96);
 }
 
-.btn-equals-wide {
-  flex: 2;
+.btn-equals-tall {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: calc(50% - 8rpx);
+  height: 288rpx;
+  border-radius: 68rpx;
+  font-size: 56rpx;
+  font-weight: 600;
+  line-height: 288rpx;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 157, 0.4);
+}
+
+.btn-equals-tall:active {
+  transform: scale(0.97);
+  box-shadow: 0 4rpx 16rpx rgba(255, 107, 157, 0.5);
 }
 
 .btn-zero {
