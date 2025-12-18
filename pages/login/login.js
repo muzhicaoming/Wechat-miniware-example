@@ -53,20 +53,28 @@ Page({
             
             // 先下载并缓存头像
             const originalAvatarUrl = userInfo.avatarUrl || ''
+            console.log('获取到的头像URL:', originalAvatarUrl)
             
             if (originalAvatarUrl) {
               // 下载并缓存头像
               avatar.downloadAndCacheAvatar(originalAvatarUrl)
                 .then((localAvatarPath) => {
+                  console.log('头像下载成功，本地路径:', localAvatarPath)
                   // 头像下载成功，保存用户信息（包含本地头像路径）
                   this.saveUserInfo(userInfo, loginRes.code, originalAvatarUrl, localAvatarPath)
                 })
                 .catch((err) => {
                   console.error('下载头像失败:', err)
+                  wx.showToast({
+                    title: '头像下载失败，使用网络头像',
+                    icon: 'none',
+                    duration: 2000
+                  })
                   // 即使头像下载失败，也保存用户信息（使用原始URL）
                   this.saveUserInfo(userInfo, loginRes.code, originalAvatarUrl, null)
                 })
             } else {
+              console.warn('没有获取到头像URL')
               // 没有头像URL，直接保存用户信息
               this.saveUserInfo(userInfo, loginRes.code, '', null)
             }

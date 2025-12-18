@@ -49,6 +49,8 @@ function downloadAndCacheAvatar(avatarUrl) {
  * @param {Function} reject - 失败回调
  */
 function downloadAvatar(avatarUrl, resolve, reject) {
+  console.log('开始下载头像:', avatarUrl)
+  
   wx.showLoading({
     title: '下载头像中...',
     mask: true
@@ -57,16 +59,19 @@ function downloadAvatar(avatarUrl, resolve, reject) {
   wx.downloadFile({
     url: avatarUrl,
     success: (res) => {
-      wx.hideLoading()
+      console.log('下载文件响应:', res)
       
-      if (res.statusCode === 200) {
+      if (res.statusCode === 200 && res.tempFilePath) {
         const filePath = res.tempFilePath
+        console.log('下载成功，临时文件路径:', filePath)
         
         // 保存到本地文件系统（永久存储）
         wx.saveFile({
           tempFilePath: filePath,
           success: (saveRes) => {
+            wx.hideLoading()
             const savedFilePath = saveRes.savedFilePath
+            console.log('保存成功，本地文件路径:', savedFilePath)
             
             // 缓存文件路径
             const cacheKey = AVATAR_CACHE_PREFIX + avatarUrl
@@ -80,19 +85,26 @@ function downloadAvatar(avatarUrl, resolve, reject) {
             resolve(savedFilePath)
           },
           fail: (err) => {
+            wx.hideLoading()
             console.error('保存头像文件失败:', err)
-            // 即使保存失败，也返回临时文件路径
+            // 即使保存失败，也返回临时文件路径（至少可以显示）
+            console.log('使用临时文件路径:', filePath)
             resolve(filePath)
           }
         })
       } else {
-        reject(new Error('下载头像失败，状态码: ' + res.statusCode))
+        wx.hideLoading()
+        const errorMsg = `下载头像失败，状态码: ${res.statusCode || 'unknown'}`
+        console.error(errorMsg)
+        reject(new Error(errorMsg))
       }
     },
     fail: (err) => {
       wx.hideLoading()
       console.error('下载头像失败:', err)
-      reject(err)
+      const errorMsg = err.errMsg || '下载失败'
+      console.error('错误详情:', errorMsg)
+      reject(new Error(errorMsg))
     }
   })
 }
