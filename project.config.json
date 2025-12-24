@@ -39,7 +39,8 @@
     "minifyWXSS": true,
     "showES6CompileOption": false,
     "minifyWXML": true,
-    "useStaticServer": true
+    "useStaticServer": true,
+    "condition": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.19.4",
@@ -49,5 +50,9 @@
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "simulatorPluginLibVersion": {
+    "wxext14566970e7e9f62": "2.27.3"
+  },
+  "projectArchitecture": "miniprogram"
 }

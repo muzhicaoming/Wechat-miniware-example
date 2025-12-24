@@ -2,36 +2,70 @@
 <view class="container">
   <!-- 已登录状态 -->
   <view class="card" wx:if="{{isLoggedIn && userInfo}}">
-    <view class="title">用户信息</view>
-    
+    <view class="title" style="display: flex; justify-content: space-between; align-items: center;">
+      <text>用户信息</text>
+      <button size="mini" type="default" bindtap="showAvatarDebug">调试</button>
+    </view>
+
     <view class="user-info-card">
-      <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      <image class="avatar" src="{{currentUserAvatar}}" mode="aspectFill"
+        bind:error="avatarError"
+        bind:load="avatarLoad"></image>
       <view class="user-details">
         <text class="nickname">{{userInfo.nickName}}</text>
+        <view wx:if="{{userInfo.localAvatarPath}}" class="avatar-status" style="font-size: 24rpx; color: #67C23A;">
+          <text class="status-text">✅ 已缓存本地头像</text>
+        </view>
+        <view wx:elif="{{userInfo.avatarUrl}}" class="avatar-status" style="font-size: 24rpx; color: #409EFF;">
+          <text class="status-text">🌐 使用网络头像</text>
+        </view>
+
+        <!-- 显示缩小的预览头像用于检查本地图片 -->
+        <view wx:if="{{userInfo.localAvatarPath}}" class="avatar-preview" style="margin-top: 10rpx;"
+          bindtap="previewLocalAvatar">
+          <text style="font-size: 20rpx; color: #999;">点击查看本地头像预览：</text>
+          <image class="avatar-preview-image"
+            src="{{userInfo.localAvatarPath}}"
+            mode="aspectFill"
+            style="width: 60rpx; height: 60rpx; border-radius: 8rpx; margin-left: 10rpx;"
+            bind:error="previewAvatarError"
+            bind:load="previewAvatarLoad"></image>
+        </view>
         <text class="location" wx:if="{{userInfo.province || userInfo.city}}">
-          {{userInfo.province}}{{userInfo.city}}
+          {{userInfo.province || ''}}{{' ' + userInfo.city || ''}}
         </text>
       </view>
     </view>
-    
+
     <button class="btn btn-secondary" bindtap="handleLogout">退出登录</button>
   </view>
 
   <!-- 未登录状态 -->
   <view class="card" wx:else>
-    <view class="title">微信登录</view>
-    
+    <view class="wechat-logo-container"
+         bindtap="handleLogoTap"
+         animation="{{bgAnimationData}}">
+      <image
+          class="wechat-logo-bg"
+        src="/images/wechat-logo.svg"
+        animation="{{logoAnimationData}}"></image>
+    </view>
+    <view class="login-header">
+      <text class="title">微信登录</text>
+      <text class="subtitle">一键登录，畅享服务</text>
+    </view>
+
     <view class="login-tip">
       <text class="tip-icon">🔐</text>
       <text class="tip-text">使用微信账号登录</text>
     </view>
     
-    <!-- 使用 bindtap + wx.getUserProfile（官方推荐在用户点击事件中调用） -->
-    <button 
+    <!-- 使用微信官方 Logo 的登录按钮 -->
+    <button
       class="btn btn-wechat"
       bindtap="handleWechatLogin">
-      <text class="btn-icon">💬</text>
-      <text>微信一键登录</text>
+      <image class="btn-wechat-icon" src="/images/wechat-logo.svg" mode="aspectFit"></image>
+      <text class="btn-text">微信一键登录</text>
     </button>
     
     <view class="login-desc">

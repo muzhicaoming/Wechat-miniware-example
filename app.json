@@ -17,7 +17,16 @@
     "navigationBarTextStyle": "white",
     "backgroundColor": "#F5F5F5"
   },
-  "lazyCodeLoading": "requiredComponents",
+  "permission": {
+    "scope.userInfo": {
+      "desc": "用于登录和显示用户头像"
+    }
+  },
+  "requiredBackgroundModes": ["audio"],
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

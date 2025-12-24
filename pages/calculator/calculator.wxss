@@ -1,4 +1,4 @@
-/* pages/calculator/calculator.wxss - iOS Style */
+/** pages/calculator/calculator.wxss - 正宗九宫格布局 **/
 .container {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -11,27 +11,26 @@
 
 .calculator {
   width: 100%;
-  max-width: 680rpx;
-  background-color: rgba(255, 255, 255, 0.05);
+  max-width: 600rpx;
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 32rpx;
-  padding: 48rpx 32rpx;
+  padding: 32rpx;
   backdrop-filter: blur(20rpx);
-  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
 }
 
 .display {
   width: 100%;
   min-height: 160rpx;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
   font-size: 72rpx;
   font-weight: 300;
   text-align: right;
-  padding: 32rpx 40rpx;
+  padding: 32rpx;
   line-height: 1.2;
   border-radius: 24rpx;
-  margin-bottom: 40rpx;
+  margin-bottom: 32rpx;
   overflow: hidden;
   box-sizing: border-box;
   word-break: break-all;
@@ -46,8 +45,7 @@
 
 .button-row {
   display: flex;
-  width: 100%;
-  gap: 16rpx;
+  justify-content: space-between;
   margin-bottom: 16rpx;
 }
 
@@ -55,47 +53,23 @@
   margin-bottom: 0;
 }
 
-.button-row-wrapper {
-  position: relative;
-  width: 100%;
-  margin-bottom: 16rpx;
-}
-
-.button-row-wrapper:last-child {
-  margin-bottom: 0;
-}
-
-.button-row-wrapper .button-row {
-  margin-bottom: 16rpx;
-  width: 100%;
-}
-
-.button-row-wrapper .button-row:last-child {
-  margin-bottom: 0;
-}
-
-.btn-spacer {
-  flex: 1;
-  height: 136rpx;
-}
-
 .btn {
-  flex: 1;
+  width: 136rpx; /* 精确设置按钮宽度 */
   height: 136rpx;
-  width: auto;
   border-radius: 68rpx;
   font-size: 44rpx;
-  font-weight: 400;
+  font-weight: 500;
   border: none;
   line-height: 136rpx;
   text-align: center;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  transition: all 0.2s;
+  transition: all 0.15s;
   box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.2);
 }
 
+/* 特殊按钮样式 */
 .btn-number {
   background-color: rgba(58, 58, 60, 0.9);
   color: #fff;
@@ -109,7 +83,7 @@
 .btn-operator {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #fff;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .btn-operator:active {
@@ -120,7 +94,7 @@
 .btn-function {
   background-color: rgba(165, 165, 165, 0.9);
   color: #000;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .btn-function:active {
@@ -139,27 +113,80 @@
   transform: scale(0.96);
 }
 
-/* 等号：精确占据第4列（第4+5行），宽度与普通按钮一致 */
+/* 特殊布局样式 */
+.button-row-wrapper {
+  position: relative;
+  display: flex;
+  margin-bottom: 16rpx;
+}
+
+.left-buttons {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 152rpx); /* 留出等号的位置 */
+  margin-right: 16rpx;
+}
+
+/* 等号按钮 - 占据右侧两行的高度 */
 .btn-equals-tall {
   position: absolute;
   right: 0;
   top: 0;
-  width: 144rpx !important;
-  height: 288rpx;
+  bottom: 0;
+  width: 136rpx !important;
+  height: auto !important;
   border-radius: 68rpx;
   font-size: 56rpx;
   font-weight: 600;
-  line-height: 288rpx;
-  box-shadow: 0 8rpx 24rpx rgba(255, 107, 157, 0.4);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.btn-equals-tall:active {
-  transform: scale(0.97);
-  box-shadow: 0 4rpx 16rpx rgba(255, 107, 157, 0.5);
-}
-
+/* 0按钮占两倍宽度 */
 .btn-zero {
-  flex: 2;
-  text-align: middle;
-  padding-left: 0rpx;
+  width: 288rpx !important; /* 2个按钮宽度 + 1个间隙 */
+  text-align: left;
+  padding-left: 68rpx;
+  box-sizing: border-box;
+}
+
+/* 修复布局 - 确保第4列对齐 */
+.button-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-row:last-child {
+  margin-bottom: 0;
+}
+
+/* 确保第4列按钮对齐 */
+.button-row .btn:nth-child(1) { margin-left: 0; }
+.button-row .btn:nth-child(2) { margin-left: 16rpx; }
+.button-row .btn:nth-child(3) { margin-left: 16rpx; }
+
+/* 移动端适配 */
+@media (max-width: 375px) {
+  .btn {
+    width: 120rpx;
+    height: 120rpx;
+    line-height: 120rpx;
+    font-size: 40rpx;
+  }
+
+  .btn-equals-tall {
+    width: 120rpx !important;
+  }
+
+  .btn-zero {
+    width: 256rpx !important;
+    padding-left: 60rpx;
+  }
+}
+
+/* 兼容旧的布局 */
+.btn-spacer {
+  display: none;
 }

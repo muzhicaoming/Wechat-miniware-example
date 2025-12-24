@@ -1,6 +1,18 @@
-// pages/help/help.js
+/**
+ * pages/help/help.js
+ * 帮助页面
+ * 展示应用使用说明和常见问题解答
+ */
+
 Page({
+  /**
+   * 页面数据
+   */
   data: {
+    /**
+     * 帮助内容列表
+     * 每个帮助项包含标题和内容
+     */
     helpSections: [
       {
         title: '如何登录',
@@ -33,6 +45,9 @@ Page({
     ]
   },
 
+  /**
+   * 页面加载时触发
+   */
   onLoad() {
     console.log('帮助页面加载')
   }

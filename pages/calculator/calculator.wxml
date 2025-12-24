@@ -1,17 +1,17 @@
-<!--pages/calculator/calculator.wxml-->
+<!--pages/calculator/calculator-wxml-->
 <view class="container">
   <view class="calculator">
     <view class="display">{{display}}</view>
-    
+
     <view class="buttons">
-      <!-- 第一行: AC + % ÷ -->
+      <!-- 第一行: AC % ÷ -->
       <view class="button-row">
         <button class="btn btn-function" bindtap="clear">AC</button>
-        <button class="btn btn-operator" data-op="+" bindtap="performOperation">+</button>
         <button class="btn btn-function" bindtap="percent">%</button>
+        <button class="btn btn-function" data-op="+" bindtap="togglePosNeg">+/-</button>
         <button class="btn btn-operator" data-op="/" bindtap="performOperation">÷</button>
       </view>
-      
+
       <!-- 第二行: 7 8 9 × -->
       <view class="button-row">
         <button class="btn btn-number" data-num="7" bindtap="inputNumber">7</button>
@@ -19,7 +19,7 @@
         <button class="btn btn-number" data-num="9" bindtap="inputNumber">9</button>
         <button class="btn btn-operator" data-op="*" bindtap="performOperation">×</button>
       </view>
-      
+
       <!-- 第三行: 4 5 6 - -->
       <view class="button-row">
         <button class="btn btn-number" data-num="4" bindtap="inputNumber">4</button>
@@ -27,23 +27,26 @@
         <button class="btn btn-number" data-num="6" bindtap="inputNumber">6</button>
         <button class="btn btn-operator" data-op="-" bindtap="performOperation">-</button>
       </view>
-      
-      <!-- 第四行和第五行: 1 2 3 和 0 .，右侧是竖向长方形等号 -->
+
+      <!-- 下两行是特殊布局：等号在右边，占据两行，其他按钮在左边 -->
       <view class="button-row-wrapper">
-        <!-- 第四行: 1 2 3 （第4列由等号占据） -->
-        <view class="button-row">
-          <button class="btn btn-number" data-num="1" bindtap="inputNumber">1</button>
-          <button class="btn btn-number" data-num="2" bindtap="inputNumber">2</button>
-          <button class="btn btn-number" data-num="3" bindtap="inputNumber">3</button>
-          <view class="btn-spacer"></view>
+        <view class="left-buttons">
+          <!-- 第四行: 1 2 3 -->
+          <view class="button-row">
+            <button class="btn btn-number" data-num="1" bindtap="inputNumber">1</button>
+            <button class="btn btn-number" data-num="2" bindtap="inputNumber">2</button>
+            <button class="btn btn-number" data-num="3" bindtap="inputNumber">3</button>
+          </view>
+
+          <!-- 第五行: 0 . + -->
+          <view class="button-row">
+            <button class="btn btn-number btn-zero" data-num="0" bindtap="inputNumber">0</button>
+            <button class="btn btn-function" bindtap="inputDot">.</button>
+            <button class="btn btn-operator" data-op="+" bindtap="performOperation">+</button>
+          </view>
         </view>
-        <!-- 第五行: 0 占第1-2列，. 占第3列，第4列由等号占据 -->
-        <view class="button-row">
-          <button class="btn btn-number btn-zero" data-num="0" bindtap="inputNumber">0</button>
-          <button class="btn btn-number" bindtap="inputDot">.</button>
-          <view class="btn-spacer"></view>
-        </view>
-        <!-- 等号按钮：精确占据第4列（第4行和第5行） -->
+
+        <!-- 等号：占据右侧两行的高度（第4、5行） -->
         <button class="btn btn-equals btn-equals-tall" bindtap="calculateResult">=</button>
       </view>
     </view>

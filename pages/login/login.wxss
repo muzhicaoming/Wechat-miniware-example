@@ -65,6 +65,45 @@
   color: #666;
 }
 
+/* 微信 logo 容器 */
+.wechat-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.wechat-logo-bg {
+  width: 120rpx;
+  height: 120rpx;
+  opacity: 0.15;
+  filter: blur(2rpx);
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10rpx); }
+}
+
+/* 登录头部 */
+.login-header {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.login-header .title {
+  font-size: 48rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.login-header .subtitle {
+  font-size: 28rpx;
+  color: #999;
+}
+
 /* 微信登录按钮 */
 .btn-wechat {
   background: linear-gradient(135deg, #07C160 0%, #06AD56 100%);
@@ -75,15 +114,54 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10rpx;
+  gap: 20rpx;
+  height: 88rpx;
+  padding: 0 40rpx;
+  box-shadow: 0 4rpx 16rpx rgba(7, 193, 96, 0.3);
 }
 
 .btn-wechat:active {
   opacity: 0.9;
+  transform: scale(0.98);
 }
 
-.btn-icon {
+.btn-wechat-icon {
+  width: 40rpx;
+  height: 40rpx;
+  filter: drop-shadow(0 2rpx 4rpx rgba(0, 0, 0, 0.1));
+}
+
+.btn-text {
   font-size: 32rpx;
+}
+
+/* 头像预览容器样式 */
+.avatar-preview {
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+  padding: 10rpx;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8rpx;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.avatar-preview:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.avatar-preview-image {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 8rpx;
+  margin-left: 10rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.avatar-status {
+  font-size: 24rpx;
+  margin-top: 8rpx;
 }
 
 .login-desc {

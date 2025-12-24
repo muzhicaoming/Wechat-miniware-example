@@ -1,9 +1,18 @@
-// pages/index/index.js
-// 九宫格主页面
+/**
+ * pages/index/index.js
+ * 九宫格主页面
+ * 展示所有功能入口，用户点击后跳转到对应页面
+ */
 
 Page({
+  /**
+   * 页面数据
+   */
   data: {
-    // 九宫格功能列表
+    /**
+     * 九宫格功能列表
+     * 每个功能项包含：id、名称、图标、跳转路径、主题色
+     */
     functions: [
       {
         id: 1,
@@ -71,10 +80,17 @@ Page({
     ]
   },
 
+  /**
+   * 页面加载时触发（只触发一次）
+   */
   onLoad() {
     console.log('首页加载')
   },
 
+  /**
+   * 页面显示时触发（每次显示都会触发）
+   * 用于刷新登录状态，确保显示最新的登录信息
+   */
   onShow() {
     // 每次显示页面时刷新登录状态
     const auth = require('../../utils/auth.js')
@@ -85,11 +101,15 @@ Page({
   },
 
   /**
-   * 点击功能项
+   * 点击功能项，跳转到对应页面
+   * @param {Object} e - 事件对象
+   * @param {Object} e.currentTarget.dataset - 数据集合
+   * @param {String} e.currentTarget.dataset.path - 目标页面路径
    */
   onFunctionTap(e) {
     const { path } = e.currentTarget.dataset
     if (path) {
+      // 使用 navigateTo 跳转，保留当前页面在页面栈中
       wx.navigateTo({
         url: path,
         fail: (err) => {

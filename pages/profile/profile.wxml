@@ -2,10 +2,13 @@
 <view class="container">
   <view class="card profile-card">
     <view class="avatar-container">
-      <image 
-        class="avatar" 
-        src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}"
+      <image
+        class="avatar"
+        src="{{currentAvatar}}"
         mode="aspectFill"
+        bindload="onAvatarLoad"
+        binderror="onAvatarError"
+        bindtap="onTapAvatar"
       />
     </view>
     <view class="user-info">
